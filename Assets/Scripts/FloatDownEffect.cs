@@ -3,35 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-public class FloatDownEffect : MonoBehaviour, IEffect
+public class FloatDownEffect : AbstractEffect
 {
-    [SerializeField] private float floatDownSec = 2.0f;
     [SerializeField] private float floatingHeight = 1.0f;
 
-    public void MakeEffect()
-    {
-        var aimingPosition = transform.position;
-        var initialPosition = aimingPosition + Vector3.up * floatingHeight;
-        transform.position = initialPosition;
+    private Vector3 initialPosition, aimingPosition;
 
-        var currentTime = 0f;
-        SingleAssignmentDisposable disposable = new SingleAssignmentDisposable();
-        disposable.Disposable = Observable.EveryFixedUpdate()
-            .Subscribe(_ =>
-            {
-                currentTime += Time.fixedDeltaTime;
-                var progress = currentTime / floatDownSec;
-                transform.position = Vector3.Lerp(initialPosition, aimingPosition, progress);
-                if(progress >= 1.0f)
-                {
-                    transform.position = aimingPosition;
-                    disposable.Dispose();
-                }
-            });
+    protected override void SetUp()
+    {
+        aimingPosition = transform.position;
+        initialPosition = aimingPosition + Vector3.up * floatingHeight;
+        transform.position = initialPosition;
     }
 
-    void Start()
+    protected override void Effect(float timeFromStart)
     {
-        MakeEffect();
+        var progress = Mathf.Sin(Mathf.PI * timeFromStart / effectSeconds / 2);
+        transform.position = Vector3.Lerp(initialPosition, aimingPosition, progress);
+    }
+
+    protected override void TearDown()
+    {
+        transform.position = aimingPosition;
     }
 }

@@ -6,7 +6,7 @@ using Assert = UnityEngine.Assertions.Assert;
 public class BoardCreator : MonoBehaviour
 {
     private readonly float boardBaseMargin = 0.5f;
-    private readonly float lineHeight = 0.12f;
+    private readonly float lineFloatingHeight = 0.12f;
 
     [SerializeField] private GameObject boardBasePrefab;
     [SerializeField] private GameObject linePrefab;
@@ -41,7 +41,7 @@ public class BoardCreator : MonoBehaviour
         for(int i = 0; i <= width; ++i)
         {
             var obj = Instantiate(linePrefab,
-                new Vector3(i - XEdgePos, lineHeight, 0),
+                transform.position + new Vector3(i - XEdgePos, lineFloatingHeight, 0),
                 Quaternion.identity, transform);
             var scale = obj.transform.localScale;
             scale.z = height * 0.1f + 0.01f; // *0.1f for adjust size scale for plane, 0.01f for reach to edge
@@ -50,7 +50,7 @@ public class BoardCreator : MonoBehaviour
         for (int i = 0; i <= height; ++i)
         {
             var obj = Instantiate(linePrefab,
-                new Vector3(0, lineHeight, i - ZEdgePos),
+                transform.position + new Vector3(0, lineFloatingHeight, i - ZEdgePos),
                 Quaternion.identity, transform);
             var scale = obj.transform.localScale;
             scale.x = width * 0.1f + 0.01f; // *0.1f for adjust size scale for plane, 0.01f for reach to edge
