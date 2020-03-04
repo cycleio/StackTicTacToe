@@ -129,10 +129,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 474370916}
-  - component: {fileID: 474370918}
   - component: {fileID: 474370917}
   m_Layer: 0
-  m_Name: Board
+  m_Name: BoardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +147,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2038961836}
+  - {fileID: 1116860061}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -161,27 +162,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 474370915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5dbac3d6929b854aa671249a255d45a, type: 3}
+  m_Script: {fileID: 11500000, guid: bb905cc6be5d84b4a99bacb6bf66b5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardBasePrefab: {fileID: 6619212253291077075, guid: 8484eaaecb6a34246899480d3941148f,
-    type: 3}
-  linePrefab: {fileID: 8618124977805180645, guid: 757726273ced22c439a6ce581f419ce5,
-    type: 3}
---- !u!114 &474370918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474370915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f13ce6a0e7473974185e22d8d3b7128e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectSeconds: 1
-  floatingHeight: 1
+  boardSize: {x: 3, y: 2}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,3 +432,96 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1116860060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1116860061}
+  - component: {fileID: 1116860062}
+  m_Layer: 0
+  m_Name: LightPillars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1116860061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116860060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 474370916}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1116860062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116860060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f772d1eaf07d7db4baf87d28db6e7ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightPillarPrefab: {fileID: 1020908365993913258, guid: 27432dd7e07b10c4d84467be37bd0793,
+    type: 3}
+  lightPillarHeight: 1.5
+--- !u!1 &2038961835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2038961836}
+  - component: {fileID: 2038961837}
+  m_Layer: 0
+  m_Name: BoardFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2038961836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038961835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 474370916}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2038961837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038961835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5dbac3d6929b854aa671249a255d45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardBasePrefab: {fileID: 6619212253291077075, guid: 8484eaaecb6a34246899480d3941148f,
+    type: 3}
+  linePrefab: {fileID: 8618124977805180645, guid: 757726273ced22c439a6ce581f419ce5,
+    type: 3}

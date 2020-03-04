@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
+/// <summary>
+/// 出現エフェクト
+/// MeshRendererのMaterialのcolor、alphaを0から元の値へ
+/// 要：Materialを透明化可能にすること
+/// </summary>
 public class AppearingEffect : AbstractEffect
 {
     private Color initialColor, aimingColor;

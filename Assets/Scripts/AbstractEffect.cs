@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
+/// <summary>
+/// 時間を要するエフェクト用のabstract class
+/// StartのタイミングでSetUp()を呼ぶ
+/// 一定時間(effectSeconds[sec])Effect()を呼び続ける
+/// 終了時にTearDown()を呼ぶ
+/// </summary>
 public abstract class AbstractEffect : MonoBehaviour
 {
     [SerializeField][Min(0.001f)] protected float effectSeconds = 1.0f;

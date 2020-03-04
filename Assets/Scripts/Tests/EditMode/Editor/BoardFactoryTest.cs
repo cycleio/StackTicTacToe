@@ -2,45 +2,44 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
-using Assert = UnityEngine.Assertions.Assert;
+using UnityEngine.TestTools.Utils;
 
 namespace Tests
 {
-    public class BoardCreatorTest
+    public class BoardFactoryTest
     {
         private GameObject board;
-        private BoardCreator boardCreator;
+        private BoardFactory boardFactory;
 
         [SetUp]
         public void SetUp()
         {
-            board = new GameObject("Board", typeof(BoardCreator));
-            boardCreator = board.GetComponent<BoardCreator>();
+            board = new GameObject("BoardFactoryTest", typeof(BoardFactory));
+            boardFactory = board.GetComponent<BoardFactory>();
         }
 
         [Test]
         public void Create([NUnit.Framework.Range(1, 5)] int w, [NUnit.Framework.Range(1, 5)] int h)
         {
-            boardCreator.Create(w, h);
+            boardFactory.Create(w, h);
             Assert.AreEqual(w + h + 2, board.transform.childCount - 1);
             for (int i = 0; i < board.transform.childCount; ++i)
             {
                 var child = board.transform.GetChild(i).gameObject;
                 if (child.name == "BoardBase")
                 {
-                    Assert.AreApproximatelyEqual(w, child.transform.localScale.x);
-                    Assert.AreApproximatelyEqual(h, child.transform.localScale.z);
+                    Assert.IsTrue(FloatEqualityComparer.Instance.Equals(w, child.transform.localScale.x));
+                    Assert.IsTrue(FloatEqualityComparer.Instance.Equals(h, child.transform.localScale.z));
                 }
                 else
                 {
                     if (child.transform.localScale.x > 0.01)
                     {
-                        Assert.AreApproximatelyEqual(0, child.transform.position.x);
+                        Assert.IsTrue(FloatEqualityComparer.Instance.Equals(0, child.transform.position.x));
                     }
                     else if (child.transform.localScale.z > 0.01)
                     {
-                        Assert.AreApproximatelyEqual(0, child.transform.position.z);
+                        Assert.IsTrue(FloatEqualityComparer.Instance.Equals(0, child.transform.position.z));
                     }
                     else
                     {
@@ -53,7 +52,7 @@ namespace Tests
         [TearDown]
         public void TearDown()
         {
-            boardCreator = null;
+            boardFactory = null;
             Object.DestroyImmediate(board);
         }
     }

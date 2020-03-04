@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
+/// <summary>
+/// 空中から降りてくるエフェクト
+/// </summary>
 public class FloatDownEffect : AbstractEffect
 {
     [SerializeField] private float floatingHeight = 1.0f;
