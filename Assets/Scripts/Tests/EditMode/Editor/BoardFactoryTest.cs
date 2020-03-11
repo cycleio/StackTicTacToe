@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools.Utils;
 
-namespace Tests
+namespace StackTicTacToe.Tests
 {
     public class BoardFactoryTest
     {

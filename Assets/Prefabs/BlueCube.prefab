@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 256456728776665087}
   - component: {fileID: 1677184027400531250}
   - component: {fileID: 6570418051713930989}
+  - component: {fileID: 8805009954338444723}
+  - component: {fileID: 2542327954317397539}
   m_Layer: 0
   m_Name: BlueCube
   m_TagString: Untagged
@@ -78,3 +80,30 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8805009954338444723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325963458383659423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13ce6a0e7473974185e22d8d3b7128e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectSeconds: 1
+  floatingHeight: 1
+--- !u!114 &2542327954317397539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325963458383659423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372ac5a50f7b3264891b4a62588e71ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectSeconds: 1

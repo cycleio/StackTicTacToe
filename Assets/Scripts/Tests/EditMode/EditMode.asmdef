@@ -3,7 +3,10 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Project"
+        "Project",
+        "UniRx",
+        "Zenject-TestFramework",
+        "Unity.TextMeshPro.Editor.Tests"
     ],
     "includePlatforms": [
         "Editor"

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8375247472239169640}
   - component: {fileID: 6059519945427650831}
   - component: {fileID: 206511838710817743}
+  - component: {fileID: 66355822229785490}
+  - component: {fileID: 1558428003533453380}
   m_Layer: 0
   m_Name: RedCube
   m_TagString: Untagged
@@ -78,3 +80,30 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &66355822229785490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480880252604348693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13ce6a0e7473974185e22d8d3b7128e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectSeconds: 1
+  floatingHeight: 1
+--- !u!114 &1558428003533453380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480880252604348693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372ac5a50f7b3264891b4a62588e71ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectSeconds: 1

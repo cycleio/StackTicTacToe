@@ -3,7 +3,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Project"
+        "Project",
+        "Unity.TextMeshPro.Tests"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools.Utils;
 
-namespace Tests
+namespace StackTicTacToe.Tests
 {
     public class LightPillarFactoryTest
     {
@@ -21,20 +21,20 @@ namespace Tests
         [Test]
         public void Create_Num([Random(1, 5, 3)]int w, [Random(1, 5, 3)]int h)
         {
-            var objs = lightPillarFactory.Create(w, h);
-            Assert.That(objs.Length, Is.EqualTo(w * h));
+            lightPillarFactory.Create(w, h);
+            Assert.That(lightPillarFactory.transform.childCount, Is.EqualTo(w * h));
         }
 
         [Test]
         public void Create_Pos([Random(1, 5, 3)]int w, [Random(1, 5, 3)]int h)
         {
-            var objs = lightPillarFactory.Create(w, h);
+            lightPillarFactory.Create(w, h);
 
             for(int i = 0; i < w; ++i)
             {
                 for(int j = 0; j < h; ++j)
                 {
-                    var pos = objs[i, j].transform.position;
+                    var pos = lightPillarFactory.transform.GetChild(j + i * h).position;
                     Assert.IsTrue(FloatEqualityComparer.Instance.Equals(0.5f * -(w - 1) + i, pos.x));
                     Assert.IsTrue(FloatEqualityComparer.Instance.Equals(0.5f * -(h - 1) + j, pos.z));
                 }

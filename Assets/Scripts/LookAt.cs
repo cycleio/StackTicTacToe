@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookAt : MonoBehaviour
+namespace StackTicTacToe
 {
-    [SerializeField] private Vector3 lookAtPosition = Vector3.zero;
-
-    public void LookAtPosition(Vector3 pos)
+    public class LookAt : MonoBehaviour
     {
-        transform.rotation = Quaternion.LookRotation(pos - transform.position);
-    }
+        [SerializeField] private Vector3 lookAtPosition = Vector3.zero;
 
-    private void Start()
-    {
-        LookAtPosition(lookAtPosition);
+        public void LookAtPosition(Vector3 pos)
+        {
+            transform.rotation = Quaternion.LookRotation(pos - transform.position);
+        }
+
+        private void Start()
+        {
+            LookAtPosition(lookAtPosition);
+        }
     }
 }

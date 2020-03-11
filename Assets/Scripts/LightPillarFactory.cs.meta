@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - lightPillarPrefab: {fileID: 1020908365993913258, guid: 27432dd7e07b10c4d84467be37bd0793,
+  - lightPillarPrefab: {fileID: 8258451988941372883, guid: 27432dd7e07b10c4d84467be37bd0793,
       type: 3}
   - boardBasePrefab: {fileID: 6619212253291077075, guid: 8484eaaecb6a34246899480d3941148f,
       type: 3}
