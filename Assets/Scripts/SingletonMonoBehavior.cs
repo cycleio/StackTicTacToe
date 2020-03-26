@@ -27,7 +27,6 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBe
                 {
                     Debug.LogError(typeof(T) + "は存在しません");
                 }
-
             }
             return instance;
         }

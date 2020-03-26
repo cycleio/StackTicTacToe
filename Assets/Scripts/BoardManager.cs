@@ -13,14 +13,14 @@ namespace StackTicTacToe
     /// </summary>
     public class BoardManager : MonoBehaviour
     {
-        [SerializeField] private Vector3Int boardSize; // ボードの大きさ
-        [SerializeField][Min(1)] private int goalNum; // N目並べのNの値
         [SerializeField] private float boardObjectHeight; //ボードobjectの高さ
         [SerializeField] private GameObject blueCell; // 青セルPrefab
         [SerializeField] private GameObject redCell; // 赤セルPrefab
         [SerializeField] private TextMeshProUGUI winningText; // 勝利テキスト
 
         private IInputUniRx inputUniRx; // インプット
+        private Vector3Int boardSize; // ボードの大きさ
+        private int goalNum; // N目並べのNの値
 
         [Inject]
         private void Initialize(IInputUniRx _inputUniRx)
@@ -39,6 +39,11 @@ namespace StackTicTacToe
             Vector2Int currentPos = Vector2Int.zero; // 選択中の位置(マス)
 
             CompositeDisposable disposables = new CompositeDisposable();
+
+            // 前シーンからのデータ受け取り
+            var boardSettings = (BoardSettings)SceneMover.Instance.TransportData;
+            boardSize = boardSettings.boardSize;
+            goalNum = boardSettings.goalNum;
 
             // ボードObject作成
             var boardFactory = GetComponentInChildren<BoardFactory>();
@@ -119,7 +124,18 @@ namespace StackTicTacToe
                     if(boardSystem.GetWinner() != BoardSystem.CellColor.None)
                     {
                         disposables.Dispose();
-                        ShowWinner(boardSystem.GetWinner());
+
+                        var winner = boardSystem.GetWinner();
+                        var color = (winner == BoardSystem.CellColor.Blue ? "6060FF" : "FF6060");
+
+                        FinishGame($"<color=#{color}>{winner.ToString()} Win!</color>");
+                    }
+                    // 勝者なし -> ゲーム終了(全マス埋まり=ドロー)判定
+                    else if (boardSystem.IsFilled())
+                    {
+                        disposables.Dispose();
+
+                        FinishGame("Draw");
                     }
 
                     // これ以上載せられないなら選択解除
@@ -132,12 +148,9 @@ namespace StackTicTacToe
                 .AddTo(disposables);
         }
 
-        private void ShowWinner(BoardSystem.CellColor winner)
+        private void FinishGame(string shownText)
         {
-            string color = (winner == BoardSystem.CellColor.Blue ? "6060FF" : "FF6060");
-            string winnerName = (winner == BoardSystem.CellColor.Blue ? "Blue" : "Red");
-
-            winningText.text = $"<color=#{color}>{winnerName} Win!</color>";
+            winningText.text = shownText;
             winningText.gameObject.SetActive(true);
 
             Observable.Timer(System.TimeSpan.FromSeconds(3))

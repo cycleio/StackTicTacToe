@@ -16,6 +16,20 @@ namespace StackTicTacToe.Tests
             boardSystem = new BoardSystem();
         }
 
+        [TestCase(false, -1, 0, 1, 1)]
+        [TestCase(false, 3, 2, 0, 1)]
+        [TestCase(false, 3, 2, 4, 0)]
+        [TestCase(false, 3, 2, 4, 5)]
+        [TestCase(true, 3, 4, 5, 3)]
+        [TestCase(true, 3, 3, 3, 3)]
+        [TestCase(true, 1, 2, 3, 3)]
+        [TestCase(true, 3, 1, 1, 3)]
+        public void IsBoardSizeValidTest(bool expected, int boardSizeX, int boardSizeY, int boardSizeZ, int goalNum)
+        {
+            Vector3Int boardSize = new Vector3Int(boardSizeX, boardSizeY, boardSizeZ);
+            Assert.AreEqual(expected, BoardSystem.IsBoardSizeValid(boardSize, goalNum));
+        }
+
         [Test]
         public void GetTurnTest()
         {
@@ -101,10 +115,14 @@ namespace StackTicTacToe.Tests
             Assert.IsTrue(boardSystem.GetWinner() == BoardSystem.CellColor.Red);
         }
 
-        /*[TearDown]
-        public void TearDown()
+        [Test]
+        public void IsFilledTest()
         {
-            Object.DestroyImmediate(obj);
-        }*/
+            boardSystem.Initialize(new Vector3Int(1, 2, 1), 2);
+
+            boardSystem.Place(0, 0);
+            boardSystem.Place(0, 0);
+            Assert.IsTrue(boardSystem.IsFilled());
+        }
     }
 }

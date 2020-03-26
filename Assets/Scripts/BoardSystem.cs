@@ -30,11 +30,24 @@ namespace StackTicTacToe
         public CellColor GetWinner() => winningCellColor;
         public int GetHeight(int x, int y) => cellsHeight[x, y];
         public bool IsPlacable(int x, int y) => cellsHeight[x, y] < boardSize.y;
+        public bool IsFilled() => cellsHeight.Cast<int>().All(val => val == boardSize.y);
         
+        static public bool IsBoardSizeValid(Vector3Int boardSize, int goalNum)
+        {
+            // boardSizeの各要素が1以上か?
+            if (Vector3Int.Max(boardSize, Vector3Int.one) != boardSize) return false;
+            // goalNumは1以上か?
+            if (goalNum < 1) return false;
+            // boardSizeの各要素のうち、少なくとも1つはgoalNum以上か?
+            // boardSizeの各要素がgoalNum未満でないか?
+            if (Mathf.Max(boardSize.x, boardSize.y,boardSize.z) < goalNum) return false;
+
+            return true;
+        }
 
         public void Initialize(Vector3Int boardSize, int goalNum)
         {
-            Assert.IsTrue(goalNum <= boardSize.x || goalNum <= boardSize.y || goalNum <= boardSize.z);
+            Assert.IsTrue(IsBoardSizeValid(boardSize, goalNum));
             boardCells = new CellColor[boardSize.x, boardSize.y, boardSize.z];
             cellsHeight = new int[boardSize.x, boardSize.z];
             turnCellColor = CellColor.Blue;
@@ -90,31 +103,6 @@ namespace StackTicTacToe
             //         また、全パターン走査は計算回数が多すぎると判断
 
             var cellPosition = new Vector3Int(x, cellsHeight[x, y], y);
-
-            /*// 原点に近い側の端までの距離
-            var distanceToOrigins = new int[]
-            {
-                cellPosition.x, // x
-                cellPosition.y, // y
-                cellPosition.z, // z
-                Mathf.Min(cellPosition.x, cellPosition.y), // x-y
-                Mathf.Min(cellPosition.y, cellPosition.z), // y-z
-                Mathf.Min(cellPosition.z, cellPosition.x), // z-x
-                Mathf.Min(cellPosition.x, cellPosition.y, cellPosition.z) // diagonal
-            };
-
-            var cellPosFromFarPoint = boardSize - cellPosition;
-            // 原点から遠い側の端までの距離
-            var lengths = new int[]
-            {
-                cellPosFromFarPoint.x, // x
-                cellPosFromFarPoint.y, // y
-                cellPosFromFarPoint.z, // z
-                Mathf.Min(cellPosFromFarPoint.x, cellPosFromFarPoint.y), // x-y
-                Mathf.Min(cellPosFromFarPoint.y, cellPosFromFarPoint.z), // y-z
-                Mathf.Min(cellPosFromFarPoint.z, cellPosFromFarPoint.x), // z-x
-                Mathf.Min(cellPosFromFarPoint.x, cellPosFromFarPoint.y, cellPosFromFarPoint.z) // diagonal
-            };*/
 
             Queue<CellColor> cells = new Queue<CellColor>();
             var winner = CellColor.None;
