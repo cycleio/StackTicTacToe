@@ -9,3 +9,5 @@
   - [x] 抽象(interfaceなど)と実装の分離
     - 分離しすぎるとソースファイルが増えすぎる。良い落としどころはどこ？
   - [x] injectする
+  - [ ] 段階踏んでやってみる
+    [ ] ゲーム中永続するstatic -> ProjectContext + AsSingle @Installer
